@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loaders</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-size: 18px;
+            line-height: 1.6;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }  
+        .loader{
+            height: 50px;
+            transform-origin: bottom center;
+            animation: rotate 3s linear infinite;
+        }
+        .circle{
+            display: inline-block;
+            background-color: purple;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: grow 1.5s linear infinite;
+            margin: -10px;
+        }
+        .circle:nth-child(2){
+           background-color: palevioletred;
+           animation-delay: 0.75s; 
+        }
+        @keyframes rotate{
+            to{
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes grow{
+            50% {
+                transform: scale(1);
+            }
+        }
+        .main{
+            text-align: center;
+            width: 90%;
+            opacity: 0;
+            display: none;
+            transition: opacity 2s ease-in;
+        }
+        .main h1{
+            font-size: 40px;
+        }
+        .main p{
+            font-size: 20px;
+            color: #333 ;
+        }
+        .btn{
+            display: inline-block;
+            background-color: purple;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-top: 15px;
+        }
+        .btn:hover{
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+    <section class="main">
+        <h1>Welcome To My Site</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Accusamus recusandae quis placeat earum velit ducimus voluptates sapiente maiores animi asperiores.</p>
+            <a href="" class="btn">Read More</a>
+    </section>
+
+    <script>
+        const loader = document.querySelector('.loader');
+        const main = document.querySelector('.main');
+
+        function init(){
+           setTimeout(()=>{
+              loader.style.opacity=0;
+              loader.style.display='none';
+              main.style.display='block';
+              setTimeout(()=>{main.style.opacity=1;},50); 
+           },4000);
+        }
+        init();
+    </script>
+</body>
+</html>
